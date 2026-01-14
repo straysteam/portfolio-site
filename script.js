@@ -2,12 +2,27 @@
 lucide.createIcons();
 
 // --- Lógica do PDF Viewer ---
+// Ajustado para refletir as 19 páginas do seu portfólio na pasta img/portfolio/
 const pages = [
-    "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200", 
-    "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200", 
-    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200", 
-    "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=1200", 
-    "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1200"
+    "img/portfolio/1.jpg",  // Capa: Wesley Souza [cite: 1, 3]
+    "img/portfolio/2.jpg",  // Sobre Mim [cite: 8]
+    "img/portfolio/3.jpg",  // Histórico Educacional [cite: 18]
+    "img/portfolio/4.jpg",  // Experiência Profissional [cite: 36]
+    "img/portfolio/5.jpg",  // Projetos de Render [cite: 45]
+    "img/portfolio/6.jpg",  // Render - Cozinha Neon [cite: 54]
+    "img/portfolio/7.jpg",  // Render - Cozinha Preta [cite: 56]
+    "img/portfolio/8.jpg",  // Render - Setup Gamer [cite: 64]
+    "img/portfolio/9.jpg",  // Planta: Projeto Residencial [cite: 67]
+    "img/portfolio/10.jpg", // QR Code Projeto Residencial [cite: 73]
+    "img/portfolio/11.jpg", // Projeto Comercial: Loja Richards [cite: 78]
+    "img/portfolio/12.jpg", // Render Loja Richards [cite: 81]
+    "img/portfolio/13.jpg", // Projeto Industrial: EVA Unipê [cite: 84]
+    "img/portfolio/14.jpg", // Internacional: Portugal [cite: 91]
+    "img/portfolio/15.jpg", // Render Apartamento Portugal [cite: 95]
+    "img/portfolio/16.jpg", // Internacional: USA Pet [cite: 99]
+    "img/portfolio/17.jpg", // Planta e Designers USA [cite: 109, 111]
+    "img/portfolio/18.jpg", // Softwares Usados [cite: 119]
+    "img/portfolio/19.jpg"  // Contato Final [cite: 130, 131]
 ];
 
 let currentPage = 0;
@@ -19,6 +34,7 @@ function updatePage() {
     pageImg.style.opacity = '0';
     setTimeout(() => {
         pageImg.src = pages[currentPage];
+        // Atualizado para mostrar o total de 19 páginas
         pageCounter.innerText = `${(currentPage + 1).toString().padStart(2, '0')} / ${pages.length.toString().padStart(2, '0')}`;
         pageImg.style.opacity = '1';
     }, 300);
@@ -57,7 +73,7 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// --- Formulário de Contato ---
+// --- Formulário de Contato (AJAX com Formspree) ---
 const contactForm = document.getElementById('contact-form');
 const formStatus = document.getElementById('form-status');
 
@@ -72,7 +88,7 @@ if (contactForm) {
 
         try {
             const response = await fetch(e.target.action, {
-                method: 'POST',
+                method: 'POST', // Usa o método definido no HTML [cite: 130]
                 body: data,
                 headers: {
                     'Accept': 'application/json'
